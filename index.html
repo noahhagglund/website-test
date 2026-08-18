@@ -33,6 +33,12 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;1,400&family=Lora:ital@0;1&display=swap" rel="stylesheet">
 
+<!-- Vimeo Player API -->
+<script src="https://player.vimeo.com/api/player.js"></script>
+
+<!-- YouTube Player API -->
+<script src="https://www.youtube.com/iframe_api"></script>
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -68,9 +74,6 @@
   --muted: #ABA8A2;
   --accent: #E29569;
   --line: #3A3A38;
-
-  /* Hover overlay color */
-  --overlay: rgba(226, 149, 105, 0.92);
 }
 
 * {
@@ -177,8 +180,13 @@ main {
 #work {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+
   column-gap: 32px;
+
+  /* CHANGE THIS NUMBER TO CONTROL
+     THE VERTICAL SPACE BETWEEN VIDEOS */
   row-gap: 40px;
+
   margin-bottom: 160px;
 }
 
@@ -187,7 +195,7 @@ main {
 }
 
 /* =========================
-   VIDEO + HOVER OVERLAY
+   VIDEO
 ========================= */
 
 .project-video {
@@ -200,81 +208,73 @@ main {
   cursor: pointer;
 }
 
-/* The actual video */
 .project-video iframe {
-  position: absolute;
-  inset: 0;
   width: 100%;
   height: 100%;
   border: 0;
   display: block;
-}
-
-/*
-   Overlay sits ABOVE the video.
-   pointer-events: none means clicks still reach
-   the video underneath.
-*/
-
-.project-overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-
-  background: var(--overlay);
-
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-
-  padding: 28px;
-
-  opacity: 0;
-  transition: opacity 0.25s ease;
-
   pointer-events: none;
 }
 
-/* Show overlay on hover */
-.project-video:hover .project-overlay {
-  opacity: 1;
-}
+/*
+  Invisible click layer.
 
-/* Overlay title */
+  This sits above the iframe so the user clicks
+  the portfolio video rather than the YouTube/Vimeo UI.
+*/
 
-.project-overlay .project-title {
-  color: #000;
-  font-size: 1.15rem;
-  font-weight: 500;
-  line-height: 1.3;
-  margin-bottom: 5px;
-}
-
-/* Overlay client / role */
-
-.project-overlay .project-meta {
-  color: rgba(0, 0, 0, 0.7);
-  font-size: 0.8rem;
-  line-height: 1.4;
-}
-
-/* Description inside overlay */
-
-.project-overlay .project-description {
-  color: rgba(0, 0, 0, 0.7);
-  font-size: 0.8rem;
-  margin-top: 8px;
+.video-click-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  cursor: pointer;
+  background: transparent;
 }
 
 /*
-   The information is now inside the video,
-   so we don't need the old information underneath.
+  While the video is playing we allow the iframe
+  to receive pointer events so the embedded player
+  can function normally.
 */
 
-.project-info {
-  display: none;
+.project-video.playing .video-click-layer {
+  pointer-events: none;
 }
 
+/*
+  Hide the embedded player UI as much as the
+  platforms allow through their embed parameters.
+*/
+
+.project-video iframe {
+  opacity: 1;
+}
+
+/* =========================
+   PROJECT INFO
+========================= */
+
+.project-info {
+  display: block;
+  padding-top: 14px;
+}
+
+.project-title {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.project-meta {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.project-description {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
 
 /* =========================
    ABOUT
@@ -302,7 +302,6 @@ main {
   border-top: 1px solid var(--line);
   margin: 64px 0;
 }
-
 
 /* =========================
    SERVICES
@@ -387,7 +386,6 @@ main {
   color: var(--muted);
 }
 
-
 /* =========================
    CLOSING BIO
 ========================= */
@@ -421,7 +419,6 @@ main {
   color: var(--accent);
 }
 
-
 /* =========================
    FOOTER
 ========================= */
@@ -437,80 +434,63 @@ footer p {
   text-align: center;
 }
 
-
 /* =========================
    MOBILE
 ========================= */
 
 @media (max-width: 800px) {
 
-  .shell {
-    position: relative;
-    min-height: 100vh;
-    max-width: 1600px;
-    margin: 0 auto;
-    padding: 64px 48px;
-  }
+.shell {
+  position: relative;
+  min-height: 100vh;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 64px 48px;
+}
 
-  nav {
-    position: fixed;
-    top: 64px;
-    left: 48px;
-    font-size: 1.4rem;
-  }
+nav {
+  position: fixed;
+  top: 64px;
+  left: 48px;
+  font-size: 1.4rem;
+}
 
-  .language-switcher {
-    top: 64px;
-    right: 48px;
-  }
+.language-switcher {
+  top: 64px;
+  right: 48px;
+}
 
-  #work {
-    grid-template-columns: 1fr;
-    row-gap: 40px;
-  }
+#work {
+  grid-template-columns: 1fr;
 
-  .project {
-    margin-bottom: 0;
-  }
+  /* MOBILE VIDEO SPACING */
+  row-gap: 40px;
+}
 
-  /*
-     On mobile there is no hover.
-     Show the overlay when the video is tapped/focused.
-  */
+.project {
+  margin-bottom: 0;
+}
 
-  .project-video:focus-within .project-overlay {
-    opacity: 1;
-  }
+.project-info {
+  display: block;
+  padding-top: 14px;
+}
 
-  .project-overlay {
-    padding: 20px;
-  }
+.service-cols {
+  grid-template-columns: 1fr;
+  gap: 48px;
+}
 
-  .project-overlay .project-title {
-    font-size: 1rem;
-  }
-
-  .project-overlay .project-meta {
-    font-size: 0.75rem;
-  }
-
-  .service-cols {
-    grid-template-columns: 1fr;
-    gap: 48px;
-  }
-
-  .contact-details {
-    text-align: left;
-  }
+.contact-details {
+  text-align: left;
+}
 
 }
 
 </style>
 </head>
 
-
 <body>
-
 
 <!-- =========================
      LANGUAGE SWITCHER
@@ -533,7 +513,6 @@ footer p {
 
 <div class="shell">
 
-
   <!-- =========================
        NAVIGATION
   ========================= -->
@@ -553,7 +532,6 @@ footer p {
 
   <main>
 
-
     <!-- =========================
          WORK
     ========================= -->
@@ -568,14 +546,20 @@ footer p {
         <div class="project-video">
 
           <iframe
-            src="https://www.youtube.com/embed/_bZya92FC8I"
-            title="Christmas Greeting 2026"
+            id="video-1"
+            src="https://www.youtube.com/embed/_bZya92FC8I?controls=0&modestbranding=1&rel=0&playsinline=1&enablejsapi=1"
+            title="Project 1"
             allow="autoplay; fullscreen; picture-in-picture"
             allowfullscreen>
           </iframe>
 
-          <div class="project-overlay">
+          <div class="video-click-layer"></div>
 
+        </div>
+
+        <div class="project-info">
+
+          <div>
             <h2 class="project-title">
               Christmas Greeting 2026
             </h2>
@@ -583,7 +567,6 @@ footer p {
             <p class="project-meta">
               Sweco / Konkret AB · Role: Sound Design / Mix
             </p>
-
           </div>
 
         </div>
@@ -598,14 +581,20 @@ footer p {
         <div class="project-video">
 
           <iframe
-            src="https://www.youtube.com/embed/7YHTXxKZF6k?si=hufZkvHp5kNBIy"
-            title="Christmas Greeting 2025"
+            id="video-2"
+            src="https://www.youtube.com/embed/7YHTXxKZF6k?controls=0&modestbranding=1&rel=0&playsinline=1&enablejsapi=1"
+            title="Project 2"
             allow="autoplay; fullscreen; picture-in-picture"
             allowfullscreen>
           </iframe>
 
-          <div class="project-overlay">
+          <div class="video-click-layer"></div>
 
+        </div>
+
+        <div class="project-info">
+
+          <div>
             <h2 class="project-title">
               Christmas Greeting 2025
             </h2>
@@ -613,7 +602,6 @@ footer p {
             <p class="project-meta">
               Sweco / Konkret AB · Role: Sound Design / Mix
             </p>
-
           </div>
 
         </div>
@@ -628,14 +616,20 @@ footer p {
         <div class="project-video">
 
           <iframe
-            src="https://player.vimeo.com/video/1098969894?h=e0b7eb809e"
-            title="Blåkläder's Triple Density Sole"
+            id="video-3"
+            src="https://player.vimeo.com/video/1098969894?h=e0b7eb809e&controls=0&title=0&byline=0&portrait=0&badge=0&autopause=0"
+            title="Project 3"
             allow="autoplay; fullscreen; picture-in-picture"
             allowfullscreen>
           </iframe>
 
-          <div class="project-overlay">
+          <div class="video-click-layer"></div>
 
+        </div>
+
+        <div class="project-info">
+
+          <div>
             <h2 class="project-title">
               Blåkläder's Triple Density Sole
             </h2>
@@ -643,7 +637,6 @@ footer p {
             <p class="project-meta">
               BlåKläder / Konkret AB · Role: Sound Design / Mix
             </p>
-
           </div>
 
         </div>
@@ -658,14 +651,20 @@ footer p {
         <div class="project-video">
 
           <iframe
-            src="https://www.youtube.com/embed/qAWUTnCIgBg?si=YvfBONgyNaT34oTQ"
-            title="Red Bull Symphonic x Victor Leksell"
+            id="video-4"
+            src="https://www.youtube.com/embed/qAWUTnCIgBg?controls=0&modestbranding=1&rel=0&playsinline=1&enablejsapi=1"
+            title="Project 4"
             allow="autoplay; fullscreen; picture-in-picture"
             allowfullscreen>
           </iframe>
 
-          <div class="project-overlay">
+          <div class="video-click-layer"></div>
 
+        </div>
+
+        <div class="project-info">
+
+          <div>
             <h2 class="project-title">
               Red Bull Symphonic x Victor Leksell (BTS)
             </h2>
@@ -673,12 +672,11 @@ footer p {
             <p class="project-meta">
               Redbull / SoYou · Role: Editor / Sound Design / Mix
             </p>
-
-            <p class="project-description">
-              Behind the scenes film for Victor Leksells Red Bull Symphonic.
-            </p>
-
           </div>
+
+          <p class="project-description">
+            Behind the scenes film for Victor Leksells Red Bull Symphonic.
+          </p>
 
         </div>
 
@@ -692,14 +690,20 @@ footer p {
         <div class="project-video">
 
           <iframe
-            src="https://www.youtube.com/embed/ygVyPM1IvMU?si=2e-iCC8y15AASd0D"
-            title="Stellaris Nexus Trailer"
+            id="video-5"
+            src="https://www.youtube.com/embed/ygVyPM1IvMU?controls=0&modestbranding=1&rel=0&playsinline=1&enablejsapi=1"
+            title="Project 5"
             allow="autoplay; fullscreen; picture-in-picture"
             allowfullscreen>
           </iframe>
 
-          <div class="project-overlay">
+          <div class="video-click-layer"></div>
 
+        </div>
+
+        <div class="project-info">
+
+          <div>
             <h2 class="project-title">
               Stellaris Nexus Trailer
             </h2>
@@ -707,7 +711,6 @@ footer p {
             <p class="project-meta">
               Paradox / Artistry film · Role: Sound Design / Mix
             </p>
-
           </div>
 
         </div>
@@ -722,14 +725,20 @@ footer p {
         <div class="project-video">
 
           <iframe
-            src="https://player.vimeo.com/video/807228365?h=071261df06"
-            title="Swedish Sterling"
+            id="video-6"
+            src="https://player.vimeo.com/video/807228365?h=071261df06&controls=0&title=0&byline=0&portrait=0&badge=0&autopause=0"
+            title="Project 6"
             allow="autoplay; fullscreen; picture-in-picture"
             allowfullscreen>
           </iframe>
 
-          <div class="project-overlay">
+          <div class="video-click-layer"></div>
 
+        </div>
+
+        <div class="project-info">
+
+          <div>
             <h2 class="project-title">
               Swedish Sterling
             </h2>
@@ -737,7 +746,6 @@ footer p {
             <p class="project-meta">
               Stirling Versal / Rob Whiteman · Role: Sound Design / Mix
             </p>
-
           </div>
 
         </div>
@@ -752,14 +760,20 @@ footer p {
         <div class="project-video">
 
           <iframe
-            src="https://player.vimeo.com/video/476216027?h=d37157fb46"
-            title="12,000 KM - Trans-Siberian to Japan"
+            id="video-7"
+            src="https://player.vimeo.com/video/476216027?h=d37157fb46&controls=0&title=0&byline=0&portrait=0&badge=0&autopause=0"
+            title="Project 7"
             allow="autoplay; fullscreen; picture-in-picture"
             allowfullscreen>
           </iframe>
 
-          <div class="project-overlay">
+          <div class="video-click-layer"></div>
 
+        </div>
+
+        <div class="project-info">
+
+          <div>
             <h2 class="project-title">
               12,000 KM - Trans-Siberian to Japan
             </h2>
@@ -767,7 +781,6 @@ footer p {
             <p class="project-meta">
               Erik Nylander · Role: Composer / Sound Design / Mix
             </p>
-
           </div>
 
         </div>
@@ -782,14 +795,20 @@ footer p {
         <div class="project-video">
 
           <iframe
-            src="https://player.vimeo.com/video/807228185?h=ece2d146ee"
-            title="Revelop"
+            id="video-8"
+            src="https://player.vimeo.com/video/807228185?h=ece2d146ee&controls=0&title=0&byline=0&portrait=0&badge=0&autopause=0"
+            title="Project 8"
             allow="autoplay; fullscreen; picture-in-picture"
             allowfullscreen>
           </iframe>
 
-          <div class="project-overlay">
+          <div class="video-click-layer"></div>
 
+        </div>
+
+        <div class="project-info">
+
+          <div>
             <h2 class="project-title">
               Revelop
             </h2>
@@ -797,7 +816,6 @@ footer p {
             <p class="project-meta">
               Revelop / Rob Whiteman · Role: Composer / Sound Design / Mix
             </p>
-
           </div>
 
         </div>
@@ -812,14 +830,20 @@ footer p {
         <div class="project-video">
 
           <iframe
-            src="https://www.youtube.com/embed/ao1cUOzVvrQ?si=xv9Yrxn5m-FrOhvF"
-            title="Lovisa Ringborg at Fotografiska"
+            id="video-9"
+            src="https://www.youtube.com/embed/ao1cUOzVvrQ?controls=0&modestbranding=1&rel=0&playsinline=1&enablejsapi=1"
+            title="Project 9"
             allow="autoplay; fullscreen; picture-in-picture"
             allowfullscreen>
           </iframe>
 
-          <div class="project-overlay">
+          <div class="video-click-layer"></div>
 
+        </div>
+
+        <div class="project-info">
+
+          <div>
             <h2 class="project-title">
               Lovisa Ringborg at Fotografiska
             </h2>
@@ -827,7 +851,6 @@ footer p {
             <p class="project-meta">
               Fotografiska Museet / Camilo Altera · Role: Sound Design / Mix
             </p>
-
           </div>
 
         </div>
@@ -842,14 +865,20 @@ footer p {
         <div class="project-video">
 
           <iframe
-            src="https://www.youtube.com/embed/j9HB7QnrZMg?si=WI5B15ro_f1LCaXa"
+            id="video-11"
+            src="https://www.youtube.com/embed/j9HB7QnrZMg?controls=0&modestbranding=1&rel=0&playsinline=1&enablejsapi=1"
             title="Project 11"
             allow="autoplay; fullscreen; picture-in-picture"
             allowfullscreen>
           </iframe>
 
-          <div class="project-overlay">
+          <div class="video-click-layer"></div>
 
+        </div>
+
+        <div class="project-info">
+
+          <div>
             <h2 class="project-title">
               YOUR TITLE
             </h2>
@@ -857,7 +886,6 @@ footer p {
             <p class="project-meta">
               YOUR CLIENT · Role: YOUR ROLE
             </p>
-
           </div>
 
         </div>
@@ -872,14 +900,20 @@ footer p {
         <div class="project-video">
 
           <iframe
-            src="https://player.vimeo.com/video/807228093?h=772195fad5"
+            id="video-12"
+            src="https://player.vimeo.com/video/807228093?h=772195fad5&controls=0&title=0&byline=0&portrait=0&badge=0&autopause=0"
             title="Project 12"
             allow="autoplay; fullscreen; picture-in-picture"
             allowfullscreen>
           </iframe>
 
-          <div class="project-overlay">
+          <div class="video-click-layer"></div>
 
+        </div>
+
+        <div class="project-info">
+
+          <div>
             <h2 class="project-title">
               YOUR TITLE
             </h2>
@@ -887,7 +921,6 @@ footer p {
             <p class="project-meta">
               YOUR CLIENT · Role: YOUR ROLE
             </p>
-
           </div>
 
         </div>
@@ -902,14 +935,20 @@ footer p {
         <div class="project-video">
 
           <iframe
-            src="https://player.vimeo.com/video/901874454?h=c22ebfa144"
+            id="video-13"
+            src="https://player.vimeo.com/video/901874454?h=c22ebfa144&controls=0&title=0&byline=0&portrait=0&badge=0&autopause=0"
             title="Project 13"
             allow="autoplay; fullscreen; picture-in-picture"
             allowfullscreen>
           </iframe>
 
-          <div class="project-overlay">
+          <div class="video-click-layer"></div>
 
+        </div>
+
+        <div class="project-info">
+
+          <div>
             <h2 class="project-title">
               YOUR TITLE
             </h2>
@@ -917,7 +956,6 @@ footer p {
             <p class="project-meta">
               YOUR CLIENT · Role: YOUR ROLE
             </p>
-
           </div>
 
         </div>
@@ -932,22 +970,27 @@ footer p {
         <div class="project-video">
 
           <iframe
-            src="https://www.youtube.com/embed/P_ChjFPzIm4?si=c1R2lXpcGpNaRO3Y"
-            title="#We create jobs"
+            id="video-14"
+            src="https://www.youtube.com/embed/P_ChjFPzIm4?controls=0&modestbranding=1&rel=0&playsinline=1&enablejsapi=1"
+            title="Project 14"
             allow="autoplay; fullscreen; picture-in-picture"
             allowfullscreen>
           </iframe>
 
-          <div class="project-overlay">
+          <div class="video-click-layer"></div>
 
+        </div>
+
+        <div class="project-info">
+
+          <div>
             <h2 class="project-title">
               #We create jobs
             </h2>
 
             <p class="project-meta">
-              Zynca.se / Michel Megherbi · Role: Sound Design / Mix
+              Zynca.se / Michel Megherbi · Role: Sound design / Mix
             </p>
-
           </div>
 
         </div>
@@ -962,22 +1005,27 @@ footer p {
         <div class="project-video">
 
           <iframe
-            src="https://player.vimeo.com/video/807228878?h=1037221d5d"
-            title="Helgfilmer"
+            id="video-15"
+            src="https://player.vimeo.com/video/807228878?h=1037221d5d&controls=0&title=0&byline=0&portrait=0&badge=0&autopause=0"
+            title="Project 15"
             allow="autoplay; fullscreen; picture-in-picture"
             allowfullscreen>
           </iframe>
 
-          <div class="project-overlay">
+          <div class="video-click-layer"></div>
 
+        </div>
+
+        <div class="project-info">
+
+          <div>
             <h2 class="project-title">
               Helgfilmer
             </h2>
 
             <p class="project-meta">
-              Discovery+ / Linnéa Fridh · Role: Sound Design / Mix
+              Discovery+ / Linnéa Fridh · Role: Sound design / Mix
             </p>
-
           </div>
 
         </div>
@@ -992,22 +1040,27 @@ footer p {
         <div class="project-video">
 
           <iframe
-            src="https://player.vimeo.com/video/807228277?h=2568559947"
-            title="Riddermark"
+            id="video-16"
+            src="https://player.vimeo.com/video/807228277?h=2568559947&controls=0&title=0&byline=0&portrait=0&badge=0&autopause=0"
+            title="Project 16"
             allow="autoplay; fullscreen; picture-in-picture"
             allowfullscreen>
           </iframe>
 
-          <div class="project-overlay">
+          <div class="video-click-layer"></div>
 
+        </div>
+
+        <div class="project-info">
+
+          <div>
             <h2 class="project-title">
               Riddermark
             </h2>
 
             <p class="project-meta">
-              Riddermark / Michel Megherbi · Role: Sound Design / Mix
+              Riddermark / Michel Megherbi · Role: Sound design / Mix
             </p>
-
           </div>
 
         </div>
@@ -1071,6 +1124,7 @@ footer p {
 
         <div class="service-cols">
 
+
           <div>
 
             <div class="orb sound">
@@ -1122,6 +1176,7 @@ footer p {
 
           </div>
 
+
         </div>
 
       </div>
@@ -1147,6 +1202,7 @@ footer p {
           Whether it's gritty electronic dance music, experimental beats or rich soundscapes,
           my primary goal is to evoke emotions and produce unique, captivating music that engages the listener.
         </p>
+
 
         <p class="say-hello">
           Say hello:
@@ -1199,50 +1255,297 @@ footer p {
 
 <script>
 
-  // Highlight navigation based on scroll position
+/* =========================
+   VIDEO PLAYBACK SYSTEM
+========================= */
 
-  const links = document.querySelectorAll('nav a');
+let youtubePlayers = [];
+let vimeoPlayers = [];
 
-  const sections = [...links].map(
-    link => document.querySelector(link.getAttribute('href'))
+
+/*
+   YOUTUBE
+*/
+
+function onYouTubeIframeAPIReady() {
+
+  const youtubeIframes = document.querySelectorAll(
+    '.project-video iframe[src*="youtube.com"]'
   );
 
+  youtubeIframes.forEach(function(iframe) {
 
-  const setActive = () => {
+    const player = new YT.Player(iframe, {
 
-    let current = sections[0];
+      events: {
 
-    sections.forEach(section => {
+        onStateChange: function(event) {
 
-      if (
-        section &&
-        section.getBoundingClientRect().top <= 120
-      ) {
-        current = section;
+          const container = iframe.closest('.project-video');
+
+          if (!container) return;
+
+          /*
+             Playing
+          */
+
+          if (event.data === YT.PlayerState.PLAYING) {
+
+            container.classList.add('playing');
+
+          }
+
+          /*
+             Paused / ended
+          */
+
+          if (
+            event.data === YT.PlayerState.PAUSED ||
+            event.data === YT.PlayerState.ENDED
+          ) {
+
+            container.classList.remove('playing');
+
+          }
+
+        }
+
       }
 
     });
 
+    youtubePlayers.push(player);
 
-    links.forEach(link => {
+  });
 
-      link.classList.toggle(
-        'active',
-        link.getAttribute('href') === '#' + current.id
-      );
+}
+
+
+/*
+   VIMEO
+*/
+
+document.addEventListener('DOMContentLoaded', function() {
+
+  const vimeoIframes = document.querySelectorAll(
+    '.project-video iframe[src*="vimeo.com"]'
+  );
+
+  vimeoIframes.forEach(function(iframe) {
+
+    const player = new Vimeo.Player(iframe);
+
+    const container = iframe.closest('.project-video');
+
+    player.on('play', function() {
+
+      container.classList.add('playing');
 
     });
 
-  };
+    player.on('pause', function() {
+
+      container.classList.remove('playing');
+
+    });
+
+    player.on('ended', function() {
+
+      container.classList.remove('playing');
+
+    });
+
+    vimeoPlayers.push(player);
+
+  });
 
 
-  window.addEventListener(
-    'scroll',
-    setActive,
-    { passive: true }
+  /*
+     CLICK HANDLERS
+  */
+
+  const clickLayers = document.querySelectorAll(
+    '.video-click-layer'
   );
 
-  setActive();
+
+  clickLayers.forEach(function(layer) {
+
+    layer.addEventListener('click', function() {
+
+      const container = layer.closest('.project-video');
+
+      const iframe = container.querySelector('iframe');
+
+
+      /*
+         YOUTUBE
+      */
+
+      if (
+        iframe.src.includes('youtube.com') &&
+        typeof YT !== 'undefined'
+      ) {
+
+        const player = youtubePlayers.find(function(p) {
+
+          return p.getIframe() === iframe;
+
+        });
+
+
+        if (player) {
+
+          const state = player.getPlayerState();
+
+          if (state === YT.PlayerState.PLAYING) {
+
+            player.pauseVideo();
+
+          } else {
+
+            /*
+               Pause every other video first
+            */
+
+            youtubePlayers.forEach(function(other) {
+
+              if (other !== player) {
+
+                other.pauseVideo();
+
+              }
+
+            });
+
+            vimeoPlayers.forEach(function(other) {
+
+              other.pause();
+
+            });
+
+
+            player.playVideo();
+
+          }
+
+        }
+
+      }
+
+
+      /*
+         VIMEO
+      */
+
+      else if (
+        iframe.src.includes('vimeo.com')
+      ) {
+
+        const player = vimeoPlayers.find(function(p) {
+
+          return p.element === iframe;
+
+        });
+
+
+        if (player) {
+
+          player.getPaused().then(function(paused) {
+
+            /*
+               Pause all other videos first
+            */
+
+            vimeoPlayers.forEach(function(other) {
+
+              if (other !== player) {
+
+                other.pause();
+
+              }
+
+            });
+
+
+            youtubePlayers.forEach(function(other) {
+
+              other.pauseVideo();
+
+            });
+
+
+            if (paused) {
+
+              player.play();
+
+            } else {
+
+              player.pause();
+
+            }
+
+          });
+
+        }
+
+      }
+
+    });
+
+  });
+
+});
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+const links = document.querySelectorAll('nav a');
+
+const sections = [...links].map(
+  link => document.querySelector(link.getAttribute('href'))
+);
+
+
+const setActive = () => {
+
+  let current = sections[0];
+
+  sections.forEach(section => {
+
+    if (
+      section &&
+      section.getBoundingClientRect().top <= 120
+    ) {
+
+      current = section;
+
+    }
+
+  });
+
+
+  links.forEach(link => {
+
+    link.classList.toggle(
+      'active',
+      link.getAttribute('href') === '#' + current.id
+    );
+
+  });
+
+};
+
+
+window.addEventListener(
+  'scroll',
+  setActive,
+  { passive: true }
+);
+
+setActive();
 
 </script>
 
