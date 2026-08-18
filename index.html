@@ -565,7 +565,7 @@ nav {
             </h2>
 
             <p class="project-meta">
-              Sweco / Konkret AB · Role: Sound Design / Mix
+              Sweco / Konkret AB · Role: Sound Designer
             </p>
           </div>
 
@@ -600,7 +600,7 @@ nav {
             </h2>
 
             <p class="project-meta">
-              Sweco / Konkret AB · Role: Sound Design / Mix
+              Sweco / Konkret AB · Role: Sound Designer
             </p>
           </div>
 
@@ -635,7 +635,7 @@ nav {
             </h2>
 
             <p class="project-meta">
-              BlåKläder / Konkret AB · Role: Sound Design / Mix
+              BlåKläder / Konkret AB · Role: Sound Designer
             </p>
           </div>
 
@@ -670,7 +670,7 @@ nav {
             </h2>
 
             <p class="project-meta">
-              Redbull / SoYou · Role: Editor / Sound Design / Mix
+              Redbull / SoYou · Role: Editor / Sound Designer
             </p>
           </div>
 
@@ -703,7 +703,7 @@ nav {
             </h2>
 
             <p class="project-meta">
-              Paradox / Artistry film · Role: Sound Design / Mix
+              Paradox / Artistry film · Role: Sound Designer
             </p>
           </div>
 
@@ -738,7 +738,7 @@ nav {
             </h2>
 
             <p class="project-meta">
-              Stirling Versal / Rob Whiteman · Role: Sound Design / Mix
+              Stirling Versal / Rob Whiteman · Role: Sound Designer
             </p>
           </div>
 
@@ -773,7 +773,7 @@ nav {
             </h2>
 
             <p class="project-meta">
-              Erik Nylander · Role: Composer / Sound Design / Mix
+              Erik Nylander · Role: Composer / Sound Designer
             </p>
           </div>
 
@@ -808,7 +808,7 @@ nav {
             </h2>
 
             <p class="project-meta">
-              Revelop / Rob Whiteman · Role: Composer / Sound Design / Mix
+              Revelop / Rob Whiteman · Role: Composer / Sound Designer
             </p>
           </div>
 
@@ -843,7 +843,7 @@ nav {
             </h2>
 
             <p class="project-meta">
-              Fotografiska Museet / Camilo Altera · Role: Sound Design / Mix
+              Fotografiska Museet / Camilo Altera · Role: Sound Designer
             </p>
           </div>
 
@@ -874,7 +874,7 @@ nav {
 
           <div>
             <h2 class="project-title">
-              YOUR TITLE
+              1 years an
             </h2>
 
             <p class="project-meta">
@@ -909,11 +909,11 @@ nav {
 
           <div>
             <h2 class="project-title">
-              YOUR TITLE
+              Showreel
             </h2>
 
             <p class="project-meta">
-              YOUR CLIENT · Role: YOUR ROLE
+              Magoo / Lena Quach · Role: Sound Designer
             </p>
           </div>
 
@@ -944,11 +944,11 @@ nav {
 
           <div>
             <h2 class="project-title">
-              YOUR TITLE
+              Joepardy
             </h2>
 
             <p class="project-meta">
-              YOUR CLIENT · Role: YOUR ROLE
+              Discover+ / Stricktly Post · Role: Composer / Sound Designer
             </p>
           </div>
 
@@ -983,7 +983,7 @@ nav {
             </h2>
 
             <p class="project-meta">
-              Zynca.se / Michel Megherbi · Role: Sound design / Mix
+              Zynca.se / Michel Megherbi · Role: Sound designer
             </p>
           </div>
 
@@ -1018,7 +1018,7 @@ nav {
             </h2>
 
             <p class="project-meta">
-              Discovery+ / Linnéa Fridh · Role: Sound design / Mix
+              Discovery+ / Linnéa Fridh · Role: Sound designer
             </p>
           </div>
 
@@ -1053,7 +1053,7 @@ nav {
             </h2>
 
             <p class="project-meta">
-              Riddermark / Michel Megherbi · Role: Sound design / Mix
+              Riddermark / Michel Megherbi · Role: Sound designer
             </p>
           </div>
 
@@ -1249,248 +1249,267 @@ nav {
 
 <script>
 
-/* =========================
-   VIDEO PLAYBACK SYSTEM
-========================= */
+<!-- =========================
+     VIDEO PLAYBACK SYSTEM
+========================= -->
 
-let youtubePlayers = [];
-let vimeoPlayers = [];
+<script>
+
+const videoContainers = document.querySelectorAll('.project-video');
+
+videoContainers.forEach(container => {
+
+  const iframe = container.querySelector('iframe');
+  const clickLayer = container.querySelector('.video-click-layer');
+
+  if (!iframe || !clickLayer) return;
+
+  const isYouTube = iframe.src.includes('youtube.com');
+  const isVimeo = iframe.src.includes('vimeo.com');
+
+  let playing = false;
 
 
-/*
-   YOUTUBE
-*/
+  /* =========================
+     YOUTUBE
+  ========================= */
 
-function onYouTubeIframeAPIReady() {
+  function youtubeCommand(command) {
 
-  const youtubeIframes = document.querySelectorAll(
-    '.project-video iframe[src*="youtube.com"]'
-  );
+    iframe.contentWindow.postMessage(
+      JSON.stringify({
+        event: 'command',
+        func: command,
+        args: []
+      }),
+      '*'
+    );
 
-  youtubeIframes.forEach(function(iframe) {
+  }
 
-    const player = new YT.Player(iframe, {
 
-      events: {
+  /* =========================
+     VIMEO
+  ========================= */
 
-        onStateChange: function(event) {
+  function vimeoCommand(command) {
 
-          const container = iframe.closest('.project-video');
+    iframe.contentWindow.postMessage(
+      JSON.stringify({
+        method: command
+      }),
+      '*'
+    );
 
-          if (!container) return;
+  }
 
-          /*
-             Playing
-          */
 
-          if (event.data === YT.PlayerState.PLAYING) {
+  /* =========================
+     CLICK TO PLAY / PAUSE
+  ========================= */
 
-            container.classList.add('playing');
+  clickLayer.addEventListener('click', () => {
 
-          }
+    if (playing) {
 
-          /*
-             Paused / ended
-          */
-
-          if (
-            event.data === YT.PlayerState.PAUSED ||
-            event.data === YT.PlayerState.ENDED
-          ) {
-
-            container.classList.remove('playing');
-
-          }
-
-        }
-
+      if (isYouTube) {
+        youtubeCommand('pauseVideo');
       }
 
-    });
+      if (isVimeo) {
+        vimeoCommand('pause');
+      }
 
-    youtubePlayers.push(player);
+    } else {
 
-  });
+      if (isYouTube) {
+        youtubeCommand('playVideo');
+      }
 
-}
+      if (isVimeo) {
+        vimeoCommand('play');
+      }
 
-
-/*
-   VIMEO
-*/
-
-document.addEventListener('DOMContentLoaded', function() {
-
-  const vimeoIframes = document.querySelectorAll(
-    '.project-video iframe[src*="vimeo.com"]'
-  );
-
-  vimeoIframes.forEach(function(iframe) {
-
-    const player = new Vimeo.Player(iframe);
-
-    const container = iframe.closest('.project-video');
-
-    player.on('play', function() {
-
-      container.classList.add('playing');
-
-    });
-
-    player.on('pause', function() {
-
-      container.classList.remove('playing');
-
-    });
-
-    player.on('ended', function() {
-
-      container.classList.remove('playing');
-
-    });
-
-    vimeoPlayers.push(player);
+    }
 
   });
 
 
-  /*
-     CLICK HANDLERS
-  */
+  /* =========================
+     YOUTUBE API EVENTS
+  ========================= */
 
-  const clickLayers = document.querySelectorAll(
-    '.video-click-layer'
-  );
+  if (isYouTube) {
+
+    iframe.addEventListener('load', () => {
+
+      iframe.contentWindow.postMessage(
+        JSON.stringify({
+          event: 'listening',
+          id: 1,
+          channel: 'portfolio'
+        }),
+        '*'
+      );
+
+    });
+
+  }
 
 
-  clickLayers.forEach(function(layer) {
+  /* =========================
+     VIMEO API EVENTS
+  ========================= */
 
-    layer.addEventListener('click', function() {
+  if (isVimeo) {
 
-      const container = layer.closest('.project-video');
+    iframe.addEventListener('load', () => {
 
-      const iframe = container.querySelector('iframe');
+      iframe.contentWindow.postMessage(
+        JSON.stringify({
+          method: 'addEventListener',
+          value: 'play'
+        }),
+        '*'
+      );
+
+      iframe.contentWindow.postMessage(
+        JSON.stringify({
+          method: 'addEventListener',
+          value: 'pause'
+        }),
+        '*'
+      );
+
+    });
+
+  }
 
 
-      /*
-         YOUTUBE
-      */
+  /* =========================
+     LISTEN FOR PLAYER EVENTS
+  ========================= */
+
+  window.addEventListener('message', event => {
+
+    let data;
+
+    try {
+      data = typeof event.data === 'string'
+        ? JSON.parse(event.data)
+        : event.data;
+    } catch {
+      return;
+    }
+
+
+    /* YouTube */
+
+    if (
+      isYouTube &&
+      data &&
+      data.event === 'onStateChange'
+    ) {
+
+      if (data.info === 1) {
+        playing = true;
+      }
 
       if (
-        iframe.src.includes('youtube.com') &&
-        typeof YT !== 'undefined'
+        data.info === 2 ||
+        data.info === 0
       ) {
-
-        const player = youtubePlayers.find(function(p) {
-
-          return p.getIframe() === iframe;
-
-        });
-
-
-        if (player) {
-
-          const state = player.getPlayerState();
-
-          if (state === YT.PlayerState.PLAYING) {
-
-            player.pauseVideo();
-
-          } else {
-
-            /*
-               Pause every other video first
-            */
-
-            youtubePlayers.forEach(function(other) {
-
-              if (other !== player) {
-
-                other.pauseVideo();
-
-              }
-
-            });
-
-            vimeoPlayers.forEach(function(other) {
-
-              other.pause();
-
-            });
-
-
-            player.playVideo();
-
-          }
-
-        }
-
+        playing = false;
       }
 
-
-      /*
-         VIMEO
-      */
-
-      else if (
-        iframe.src.includes('vimeo.com')
-      ) {
-
-        const player = vimeoPlayers.find(function(p) {
-
-          return p.element === iframe;
-
-        });
+    }
 
 
-        if (player) {
+    /* Vimeo */
 
-          player.getPaused().then(function(paused) {
+    if (
+      isVimeo &&
+      data &&
+      data.event === 'play'
+    ) {
 
-            /*
-               Pause all other videos first
-            */
+      playing = true;
 
-            vimeoPlayers.forEach(function(other) {
+    }
 
-              if (other !== player) {
+    if (
+      isVimeo &&
+      data &&
+      data.event === 'pause'
+    ) {
 
-                other.pause();
+      playing = false;
 
-              }
+    }
 
-            });
+    if (
+      isVimeo &&
+      data &&
+      data.event === 'ended'
+    ) {
 
+      playing = false;
 
-            youtubePlayers.forEach(function(other) {
-
-              other.pauseVideo();
-
-            });
-
-
-            if (paused) {
-
-              player.play();
-
-            } else {
-
-              player.pause();
-
-            }
-
-          });
-
-        }
-
-      }
-
-    });
+    }
 
   });
 
 });
 
+
+/* =========================
+   NAVIGATION
+========================= */
+
+const links = document.querySelectorAll('nav a');
+
+const sections = [...links].map(
+  link => document.querySelector(link.getAttribute('href'))
+);
+
+
+const setActive = () => {
+
+  let current = sections[0];
+
+  sections.forEach(section => {
+
+    if (
+      section &&
+      section.getBoundingClientRect().top <= 120
+    ) {
+      current = section;
+    }
+
+  });
+
+
+  links.forEach(link => {
+
+    link.classList.toggle(
+      'active',
+      link.getAttribute('href') === '#' + current.id
+    );
+
+  });
+
+};
+
+
+window.addEventListener(
+  'scroll',
+  setActive,
+  { passive: true }
+);
+
+setActive();
+
+</script>
 
 /* =========================
    NAVIGATION
