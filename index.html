@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Noah Hägglund — Sound Designer</title>
-<meta name="description" content="Noah Hägglund — sound designer, composer and audio engineer based in Stockholm, Sweden.">
+<title>Sound Designer Stockholm — Noah Hägglund</title>
+<meta name="description" content="Noah Hägglund is a sound designer, composer and audio engineer based in Stockholm, Sweden. Sound design, mixing, mastering and audio production for film, games, animation and commercial projects.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -51,6 +51,27 @@ a {
 }
 
 /* =========================
+   LANGUAGE SWITCHER
+========================= */
+
+.language-switcher {
+  position: fixed;
+  top: 64px;
+  right: 48px;
+  z-index: 1000;
+  font-size: 1rem;
+}
+
+.language-switcher a {
+  color: var(--muted);
+  transition: color 0.2s ease;
+}
+
+.language-switcher a:hover {
+  color: var(--accent);
+}
+
+/* =========================
    LAYOUT
 ========================= */
 
@@ -69,7 +90,7 @@ nav {
   top: 64px;
   align-self: start;
   font-size: 1.4rem;
-  transform: translateX( 60px);
+  transform: translateX(60px);
 }
 
 nav a {
@@ -153,6 +174,13 @@ main {
 .lede {
   max-width: 640px;
   margin: 0 auto;
+}
+
+.lede h1 {
+  font-family: 'Lora', serif;
+  font-weight: 400;
+  font-size: 2rem;
+  margin-bottom: 24px;
 }
 
 .lede p {
@@ -311,23 +339,28 @@ nav {
   font-size: 1.4rem;
 }
 
-  .project {
-    margin-bottom: 72px;
-  }
+.language-switcher {
+  top: 64px;
+  right: 48px;
+}
 
-  .project-info {
-    grid-template-columns: 1fr;
-    gap: 8px;
-  }
+.project {
+  margin-bottom: 72px;
+}
 
-  .service-cols {
-    grid-template-columns: 1fr;
-    gap: 48px;
-  }
+.project-info {
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
 
-  .contact-details {
-    text-align: left;
-  }
+.service-cols {
+  grid-template-columns: 1fr;
+  gap: 48px;
+}
+
+.contact-details {
+  text-align: left;
+}
 
 }
 
@@ -335,6 +368,15 @@ nav {
 </head>
 
 <body>
+
+<!-- =========================
+     LANGUAGE SWITCHER
+========================= -->
+
+<div class="language-switcher">
+  <a href="sv/">sv</a>
+</div>
+
 
 <div class="shell">
 
@@ -370,16 +412,6 @@ nav {
 
         <div class="project-video">
 
-          <!--
-          PASTE YOUR VIDEO EMBED URL HERE
-
-          Vimeo example:
-          https://player.vimeo.com/video/123456789
-
-          YouTube example:
-          https://www.youtube.com/embed/VIDEO_ID
-          -->
-
           <iframe
             src="https://www.youtube.com/embed/_bZya92FC8I"
             title="Project 1"
@@ -400,7 +432,6 @@ nav {
               Sweco / Konkret AB · Role: Sound Design / Mix
             </p>
           </div>
-
 
         </div>
 
@@ -601,9 +632,9 @@ nav {
         </div>
 
       </article>
-      
-      
-            <!-- PROJECT 8 -->
+
+
+      <!-- PROJECT 8 -->
 
       <article class="project">
 
@@ -633,9 +664,9 @@ nav {
         </div>
 
       </article>
-      
-      
-                  <!-- PROJECT 8 -->
+
+
+      <!-- PROJECT 9 -->
 
       <article class="project">
 
@@ -643,7 +674,7 @@ nav {
 
           <iframe
             src="https://www.youtube.com/embed/ao1cUOzVvrQ?si=xv9Yrxn5m-FrOhvF"
-            title="Project 8"
+            title="Project 9"
             allow="autoplay; fullscreen; picture-in-picture"
             allowfullscreen>
           </iframe>
@@ -661,12 +692,12 @@ nav {
               Fotografiska Museet / Camilo Altera · Role: Sound Design / Mix
             </p>
           </div>
-            
+
         </div>
 
       </article>
 
-      
+
     </section>
 
 
@@ -678,12 +709,15 @@ nav {
 
       <div class="lede">
 
+        <h1>Sound Designer in Stockholm</h1>
+
         <p>
           Hello! My name is Noah Hägglund.
         </p>
 
         <p>
-          I am a sound composer, designer and engineer. I create sound design and music for games, animation and film.
+          I am a Stockholm-based sound designer, composer and audio engineer.
+          I create sound design and music for games, animation, film and commercial productions.
         </p>
 
         <p>
