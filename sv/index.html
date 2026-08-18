@@ -123,11 +123,15 @@ main {
 ========================= */
 
 #work {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 32px;
+  row-gap: 80px;
   margin-bottom: 160px;
 }
 
 .project {
-  margin-bottom: 96px;
+  margin-bottom: 0;
 }
 
 .project-video {
@@ -146,26 +150,25 @@ main {
 }
 
 .project-info {
-  display: grid;
-  grid-template-columns: 1fr 260px;
-  gap: 32px;
-  padding-top: 18px;
+  display: block;
+  padding-top: 14px;
 }
 
 .project-title {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 500;
   margin-bottom: 4px;
 }
 
 .project-meta {
   color: var(--muted);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
 }
 
 .project-description {
+  margin-top: 8px;
   color: var(--muted);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
 }
 
 /* =========================
@@ -181,17 +184,6 @@ main {
 .lede {
   max-width: 640px;
   margin: 0 auto;
-}
-
-.accent-title {
-  color: var(--accent);
-}
-
-.lede h1 {
-  font-family: 'Lora', serif;
-  font-weight: 400;
-  font-size: 2rem;
-  margin-bottom: 24px;
 }
 
 .lede p {
@@ -244,6 +236,14 @@ main {
   height: 100px;
   border-radius: 50%;
   margin: 0 auto 20px;
+  overflow: hidden;
+}
+
+.service-cols .orb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .orb.sound {
@@ -355,13 +355,18 @@ nav {
   right: 48px;
 }
 
+#work {
+  grid-template-columns: 1fr;
+  row-gap: 72px;
+}
+
 .project {
-  margin-bottom: 72px;
+  margin-bottom: 0;
 }
 
 .project-info {
-  grid-template-columns: 1fr;
-  gap: 8px;
+  display: block;
+  padding-top: 14px;
 }
 
 .service-cols {
@@ -730,8 +735,6 @@ nav {
 
       <div class="lede">
 
-        <h1 class="accent-title">Ljuddesigner i Stockholm</h1>
-
         <p>
           Hej! Jag heter Noah.
         </p>
@@ -780,7 +783,9 @@ nav {
 
           <div>
 
-            <div class="orb sound"></div>
+            <div class="orb sound">
+              <img src="../images/bubble1.png" alt="Ljuddesign">
+            </div>
 
             <h3>
               Ljuddesign
@@ -796,7 +801,9 @@ nav {
 
           <div>
 
-            <div class="orb mix"></div>
+            <div class="orb mix">
+              <img src="../images/bubble2.png" alt="Mixning & Mastering">
+            </div>
 
             <h3>
               Mixning &amp; Mastering
@@ -811,7 +818,9 @@ nav {
 
           <div>
 
-            <div class="orb restore"></div>
+            <div class="orb restore">
+              <img src="../images/bubble3.jpg" alt="Ljudrestaurering">
+            </div>
 
             <h3>
               Ljudrestaurering
@@ -851,7 +860,7 @@ nav {
         </p>
 
 
-                <p class="say-hello">
+        <p class="say-hello">
           Säg hej:
         </p>
 
