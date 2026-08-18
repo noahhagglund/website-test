@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="sv">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -145,13 +146,11 @@ main {
 ========================= */
 
 .project-video {
-  position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
   background: #111;
   border: 1px solid var(--line);
   overflow: hidden;
-  cursor: pointer;
 }
 
 .project-video iframe {
@@ -159,29 +158,6 @@ main {
   height: 100%;
   border: 0;
   display: block;
-
-  /*
-    Prevent the embedded YouTube/Vimeo player
-    from receiving mouse clicks directly.
-    The invisible click layer below handles playback.
-  */
-  pointer-events: none;
-}
-
-
-/*
-   Invisible click layer.
-
-   This sits above the video and makes the entire
-   video clickable without exposing the player UI.
-*/
-
-.video-click-layer {
-  position: absolute;
-  inset: 0;
-  z-index: 10;
-  cursor: pointer;
-  background: transparent;
 }
 
 
@@ -488,13 +464,11 @@ footer p {
         <div class="project-video">
 
           <iframe
-            src="https://www.youtube.com/embed/_bZya92FC8I?controls=0&modestbranding=1&rel=0&iv_load_policy=3&playsinline=1&enablejsapi=1"
+            src="https://www.youtube.com/embed/_bZya92FC8I?controls=1&modestbranding=1&rel=0&playsinline=1&enablejsapi=1"
             title="Projekt 1"
             allow="autoplay; fullscreen; picture-in-picture"
             allowfullscreen>
           </iframe>
-
-          <div class="video-click-layer"></div>
 
         </div>
 
@@ -507,7 +481,7 @@ footer p {
             </h2>
 
             <p class="project-meta">
-              Sweco / Konkret AB · Roll: Ljuddesign / Mix
+              Sweco / Konkret AB · Roll: Ljuddesigner
             </p>
 
           </div>
@@ -524,13 +498,11 @@ footer p {
         <div class="project-video">
 
           <iframe
-            src="https://www.youtube.com/embed/7YHTXxKZF6k?si=hufZkvHp5kNBIy&controls=0&modestbranding=1&rel=0&iv_load_policy=3&playsinline=1&enablejsapi=1"
+            src="https://www.youtube.com/embed/7YHTXxKZF6k?controls=1&modestbranding=1&rel=0&playsinline=1&enablejsapi=1"
             title="Projekt 2"
             allow="autoplay; fullscreen; picture-in-picture"
             allowfullscreen>
           </iframe>
-
-          <div class="video-click-layer"></div>
 
         </div>
 
@@ -543,7 +515,7 @@ footer p {
             </h2>
 
             <p class="project-meta">
-              Sweco / Konkret AB · Roll: Ljuddesign / Mix
+              Sweco / Konkret AB · Roll: Ljuddesigner
             </p>
 
           </div>
@@ -560,13 +532,11 @@ footer p {
         <div class="project-video">
 
           <iframe
-            src="https://player.vimeo.com/video/1098969894?h=e0b7eb809e&controls=0&title=0&byline=0&portrait=0"
+            src="https://player.vimeo.com/video/1098969894?h=e0b7eb809e&controls=1&title=0&byline=0&portrait=0&autopause=0"
             title="Projekt 3"
             allow="autoplay; fullscreen; picture-in-picture"
             allowfullscreen>
           </iframe>
-
-          <div class="video-click-layer"></div>
 
         </div>
 
@@ -579,7 +549,7 @@ footer p {
             </h2>
 
             <p class="project-meta">
-              BlåKläder / Konkret AB · Roll: Ljuddesign / Mix
+              BlåKläder / Konkret AB · Roll: Ljuddesigner / Mix
             </p>
 
           </div>
@@ -596,13 +566,11 @@ footer p {
         <div class="project-video">
 
           <iframe
-            src="https://www.youtube.com/embed/qAWUTnCIgBg?si=YvfBONgyNaT34oTQ&controls=0&modestbranding=1&rel=0&iv_load_policy=3&playsinline=1&enablejsapi=1"
+            src="https://www.youtube.com/embed/qAWUTnCIgBg?controls=1&modestbranding=1&rel=0&playsinline=1&enablejsapi=1"
             title="Projekt 4"
             allow="autoplay; fullscreen; picture-in-picture"
             allowfullscreen>
           </iframe>
-
-          <div class="video-click-layer"></div>
 
         </div>
 
@@ -615,14 +583,10 @@ footer p {
             </h2>
 
             <p class="project-meta">
-              Red Bull / SoYou · Roll: Klippning / Ljuddesign / Mix
+              Red Bull / SoYou · Roll: Klippning / Ljuddesigner
             </p>
 
           </div>
-
-          <p class="project-description">
-            Behind the scenes-film för Victor Leksells Red Bull Symphonic.
-          </p>
 
         </div>
 
@@ -636,13 +600,11 @@ footer p {
         <div class="project-video">
 
           <iframe
-            src="https://www.youtube.com/embed/ygVyPM1IvMU?si=2e-iCC8y15AASd0D&controls=0&modestbranding=1&rel=0&iv_load_policy=3&playsinline=1&enablejsapi=1"
+            src="https://player.vimeo.com/video/1084888893?h=dfa957d328&controls=1&title=0&byline=0&portrait=0&autopause=0"
             title="Projekt 5"
             allow="autoplay; fullscreen; picture-in-picture"
             allowfullscreen>
           </iframe>
-
-          <div class="video-click-layer"></div>
 
         </div>
 
@@ -651,11 +613,11 @@ footer p {
           <div>
 
             <h2 class="project-title">
-              Stellaris Nexus Trailer
+              Charging game
             </h2>
 
             <p class="project-meta">
-              Paradox / Artistry film · Roll: Ljuddesign / Mix
+              Scania / Appelberg Communication · Roll: Ljuddesigner
             </p>
 
           </div>
@@ -672,13 +634,11 @@ footer p {
         <div class="project-video">
 
           <iframe
-            src="https://player.vimeo.com/video/807228365?h=071261df06&controls=0&title=0&byline=0&portrait=0"
+            src="https://player.vimeo.com/video/807228365?h=071261df06&controls=1&title=0&byline=0&portrait=0&autopause=0"
             title="Projekt 6"
             allow="autoplay; fullscreen; picture-in-picture"
             allowfullscreen>
           </iframe>
-
-          <div class="video-click-layer"></div>
 
         </div>
 
@@ -691,7 +651,7 @@ footer p {
             </h2>
 
             <p class="project-meta">
-              Stirling Versal / Rob Whiteman · Roll: Ljuddesign / Mix
+              Stirling Versal / Rob Whiteman · Roll: Ljuddesigner
             </p>
 
           </div>
@@ -708,13 +668,11 @@ footer p {
         <div class="project-video">
 
           <iframe
-            src="https://player.vimeo.com/video/476216027?h=d37157fb46&controls=0&title=0&byline=0&portrait=0"
+            src="https://player.vimeo.com/video/476216027?h=d37157fb46&controls=1&title=0&byline=0&portrait=0&autopause=0"
             title="Projekt 7"
             allow="autoplay; fullscreen; picture-in-picture"
             allowfullscreen>
           </iframe>
-
-          <div class="video-click-layer"></div>
 
         </div>
 
@@ -727,7 +685,7 @@ footer p {
             </h2>
 
             <p class="project-meta">
-              Erik Nylander · Roll: Kompositör / Ljuddesign / Mix
+              Erik Nylander · Roll: Kompositör / Ljuddesigner
             </p>
 
           </div>
@@ -744,13 +702,11 @@ footer p {
         <div class="project-video">
 
           <iframe
-            src="https://player.vimeo.com/video/807228185?h=ece2d146ee&controls=0&title=0&byline=0&portrait=0"
+            src="https://www.youtube.com/embed/j9HB7QnrZMg?controls=1&modestbranding=1&rel=0&playsinline=1&enablejsapi=1"
             title="Projekt 8"
             allow="autoplay; fullscreen; picture-in-picture"
             allowfullscreen>
           </iframe>
-
-          <div class="video-click-layer"></div>
 
         </div>
 
@@ -759,11 +715,11 @@ footer p {
           <div>
 
             <h2 class="project-title">
-              Revelop
+              Paradox Arc 1st Year Anniversary
             </h2>
 
             <p class="project-meta">
-              Revelop / Rob Whiteman · Roll: Kompositör / Ljuddesign / Mix
+              Paradox / Artistry Film · Roll: Ljuddesigner
             </p>
 
           </div>
@@ -780,13 +736,11 @@ footer p {
         <div class="project-video">
 
           <iframe
-            src="https://www.youtube.com/embed/ao1cUOzVvrQ?si=xv9Yrxn5m-FrOhvF&controls=0&modestbranding=1&rel=0&iv_load_policy=3&playsinline=1&enablejsapi=1"
+            src="https://player.vimeo.com/video/807228093?h=772195fad5&controls=1&title=0&byline=0&portrait=0&autopause=0"
             title="Projekt 9"
             allow="autoplay; fullscreen; picture-in-picture"
             allowfullscreen>
           </iframe>
-
-          <div class="video-click-layer"></div>
 
         </div>
 
@@ -795,11 +749,181 @@ footer p {
           <div>
 
             <h2 class="project-title">
-              Lovisa Ringborg på Fotografiska
+              Showreel
             </h2>
 
             <p class="project-meta">
-              Fotografiska Museet / Camilo Altera · Roll: Ljuddesign / Mix
+              Magoo / Lena Quach · Roll: Ljuddesigner
+            </p>
+
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- PROJECT 10 -->
+
+      <article class="project">
+
+        <div class="project-video">
+
+          <iframe
+            src="https://player.vimeo.com/video/807228185?h=ece2d146ee&controls=1&title=0&byline=0&portrait=0&autopause=0"
+            title="Projekt 10"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+
+        </div>
+
+        <div class="project-info">
+
+          <div>
+
+            <h2 class="project-title">
+              Revelop
+            </h2>
+
+            <p class="project-meta">
+              Revelop / Rob Whiteman · Roll: Kompositör / Ljuddesigner
+            </p>
+
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- PROJECT 11 -->
+
+      <article class="project">
+
+        <div class="project-video">
+
+          <iframe
+            src="https://player.vimeo.com/video/901874454?h=c22ebfa144&controls=1&title=0&byline=0&portrait=0&autopause=0"
+            title="Projekt 11"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+
+        </div>
+
+        <div class="project-info">
+
+          <div>
+
+            <h2 class="project-title">
+              Jeopardy
+            </h2>
+
+            <p class="project-meta">
+              Discover+ / Stricktly Post · Roll: Kompositör / Ljuddesigner
+            </p>
+
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- PROJECT 12 -->
+
+      <article class="project">
+
+        <div class="project-video">
+
+          <iframe
+            src="https://www.youtube.com/embed/P_ChjFPzIm4?controls=1&modestbranding=1&rel=0&playsinline=1&enablejsapi=1"
+            title="Projekt 12"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+
+        </div>
+
+        <div class="project-info">
+
+          <div>
+
+            <h2 class="project-title">
+              #We create jobs
+            </h2>
+
+            <p class="project-meta">
+              Zynca.se / Michel Megherbi · Roll: Ljuddesigner
+            </p>
+
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- PROJECT 13 -->
+
+      <article class="project">
+
+        <div class="project-video">
+
+          <iframe
+            src="https://player.vimeo.com/video/807228878?h=1037221d5d&controls=1&title=0&byline=0&portrait=0&autopause=0"
+            title="Projekt 13"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+
+        </div>
+
+        <div class="project-info">
+
+          <div>
+
+            <h2 class="project-title">
+              Helgfilmer
+            </h2>
+
+            <p class="project-meta">
+              Discovery+ / Linnéa Fridh · Roll: Ljuddesigner
+            </p>
+
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- PROJECT 14 -->
+
+      <article class="project">
+
+        <div class="project-video">
+
+          <iframe
+            src="https://player.vimeo.com/video/807228277?h=2568559947&controls=1&title=0&byline=0&portrait=0&autopause=0"
+            title="Projekt 14"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+
+        </div>
+
+        <div class="project-info">
+
+          <div>
+
+            <h2 class="project-title">
+              Riddermark
+            </h2>
+
+            <p class="project-meta">
+              Riddermark / Michel Megherbi · Roll: Ljuddesigner
             </p>
 
           </div>
@@ -826,7 +950,7 @@ footer p {
         </p>
 
         <p>
-          Jag är en ljuddesigner, kompositör och ljudtekniker, ursprungligen från hälsingland, nu baserad i Stockholm.
+          Jag är en ljuddesigner, kompositör och ljudtekniker, ursprungligen från Hälsingland, nu baserad i Stockholm.
           Jag skapar ljuddesign &amp; musik för spel, animation, film och andra kommersiella produktioner.
         </p>
 
@@ -996,180 +1120,10 @@ footer p {
 
 
 <!-- =========================
-     VIDEO PLAYBACK SYSTEM
+     NAVIGATION
 ========================= -->
 
 <script>
-
-const videoContainers = document.querySelectorAll('.project-video');
-
-
-videoContainers.forEach(container => {
-
-  const iframe = container.querySelector('iframe');
-  const clickLayer = container.querySelector('.video-click-layer');
-
-  if (!iframe || !clickLayer) return;
-
-
-  /*
-    Determine whether this is YouTube or Vimeo.
-  */
-
-  const isYouTube =
-    iframe.src.includes('youtube.com') ||
-    iframe.src.includes('youtu.be');
-
-  const isVimeo =
-    iframe.src.includes('vimeo.com');
-
-
-  /*
-    Send commands to YouTube.
-  */
-
-  function youtubeCommand(command) {
-
-    iframe.contentWindow.postMessage(
-      JSON.stringify({
-        event: 'command',
-        func: command,
-        args: []
-      }),
-      '*'
-    );
-
-  }
-
-
-  /*
-    Send commands to Vimeo.
-  */
-
-  function vimeoCommand(command) {
-
-    iframe.contentWindow.postMessage(
-      JSON.stringify({
-        method: command
-      }),
-      '*'
-    );
-
-  }
-
-
-  /*
-    Track whether the video is currently playing.
-
-    We keep this locally so the click layer can
-    toggle play / pause.
-  */
-
-  let playing = false;
-
-
-  /*
-    Click anywhere on the video.
-  */
-
-  clickLayer.addEventListener('click', () => {
-
-    if (isYouTube) {
-
-      if (playing) {
-
-        youtubeCommand('pauseVideo');
-
-        playing = false;
-
-      } else {
-
-        youtubeCommand('playVideo');
-
-        playing = true;
-
-      }
-
-    }
-
-
-    if (isVimeo) {
-
-      if (playing) {
-
-        vimeoCommand('pause');
-
-        playing = false;
-
-      } else {
-
-        vimeoCommand('play');
-
-        playing = true;
-
-      }
-
-    }
-
-  });
-
-
-  /*
-    Prepare YouTube API communication.
-  */
-
-  if (isYouTube) {
-
-    iframe.addEventListener('load', () => {
-
-      iframe.contentWindow.postMessage(
-        JSON.stringify({
-          event: 'listening',
-          id: 1,
-          channel: 'portfolio'
-        }),
-        '*'
-      );
-
-    });
-
-  }
-
-
-  /*
-    Prepare Vimeo API communication.
-  */
-
-  if (isVimeo) {
-
-    iframe.addEventListener('load', () => {
-
-      iframe.contentWindow.postMessage(
-        JSON.stringify({
-          method: 'addEventListener',
-          value: 'play'
-        }),
-        '*'
-      );
-
-      iframe.contentWindow.postMessage(
-        JSON.stringify({
-          method: 'addEventListener',
-          value: 'pause'
-        }),
-        '*'
-      );
-
-    });
-
-  }
-
-});
-
-
-/* =========================
-   NAVIGATION
-========================= */
 
 const links = document.querySelectorAll('nav a');
 
