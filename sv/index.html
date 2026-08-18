@@ -5,10 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Ljuddesigner Stockholm — Noah Hägglund</title>
+
 <meta name="description" content="Noah Hägglund är en ljuddesigner, kompositör och ljudtekniker baserad i Stockholm, Sverige. Ljuddesign, mixning, mastering och ljudproduktion för film, spel, animation och reklam.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;1,400&family=Lora:ital@0;1&display=swap" rel="stylesheet">
 
 <style>
@@ -50,6 +52,7 @@ a {
   text-decoration: none;
 }
 
+
 /* =========================
    LAYOUT
 ========================= */
@@ -90,6 +93,7 @@ main {
   transform: translateX(-142px);
 }
 
+
 /* =========================
    LANGUAGE SWITCHER
 ========================= */
@@ -118,6 +122,7 @@ main {
   margin: 0 7px;
 }
 
+
 /* =========================
    WORK
 ========================= */
@@ -126,7 +131,7 @@ main {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   column-gap: 32px;
-  row-gap: 80px;
+  row-gap: 40px;
   margin-bottom: 160px;
 }
 
@@ -134,12 +139,19 @@ main {
   margin-bottom: 0;
 }
 
+
+/* =========================
+   VIDEO
+========================= */
+
 .project-video {
+  position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
   background: #111;
   border: 1px solid var(--line);
   overflow: hidden;
+  cursor: pointer;
 }
 
 .project-video iframe {
@@ -147,7 +159,35 @@ main {
   height: 100%;
   border: 0;
   display: block;
+
+  /*
+    Prevent the embedded YouTube/Vimeo player
+    from receiving mouse clicks directly.
+    The invisible click layer below handles playback.
+  */
+  pointer-events: none;
 }
+
+
+/*
+   Invisible click layer.
+
+   This sits above the video and makes the entire
+   video clickable without exposing the player UI.
+*/
+
+.video-click-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  cursor: pointer;
+  background: transparent;
+}
+
+
+/* =========================
+   PROJECT INFO
+========================= */
 
 .project-info {
   display: block;
@@ -170,6 +210,7 @@ main {
   color: var(--muted);
   font-size: 0.8rem;
 }
+
 
 /* =========================
    ABOUT
@@ -197,6 +238,7 @@ main {
   border-top: 1px solid var(--line);
   margin: 64px 0;
 }
+
 
 /* =========================
    SERVICES
@@ -281,6 +323,7 @@ main {
   color: var(--muted);
 }
 
+
 /* =========================
    CLOSING BIO
 ========================= */
@@ -314,6 +357,7 @@ main {
   color: var(--accent);
 }
 
+
 /* =========================
    FOOTER
 ========================= */
@@ -329,61 +373,64 @@ footer p {
   text-align: center;
 }
 
+
 /* =========================
    MOBILE
 ========================= */
 
 @media (max-width: 800px) {
 
-.shell {
-  position: relative;
-  min-height: 100vh;
-  max-width: 1600px;
-  margin: 0 auto;
-  padding: 64px 48px;
-}
+  .shell {
+    position: relative;
+    min-height: 100vh;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 64px 48px;
+  }
 
-nav {
-  position: fixed;
-  top: 64px;
-  left: 48px;
-  font-size: 1.4rem;
-}
+  nav {
+    position: fixed;
+    top: 64px;
+    left: 48px;
+    font-size: 1.4rem;
+  }
 
-.language-switcher {
-  top: 64px;
-  right: 48px;
-}
+  .language-switcher {
+    top: 64px;
+    right: 48px;
+  }
 
-#work {
-  grid-template-columns: 1fr;
-  row-gap: 72px;
-}
+  #work {
+    grid-template-columns: 1fr;
+    row-gap: 40px;
+  }
 
-.project {
-  margin-bottom: 0;
-}
+  .project {
+    margin-bottom: 0;
+  }
 
-.project-info {
-  display: block;
-  padding-top: 14px;
-}
+  .project-info {
+    display: block;
+    padding-top: 14px;
+  }
 
-.service-cols {
-  grid-template-columns: 1fr;
-  gap: 48px;
-}
+  .service-cols {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
 
-.contact-details {
-  text-align: left;
-}
+  .contact-details {
+    text-align: left;
+  }
 
 }
 
 </style>
 </head>
 
+
 <body>
+
 
 <!-- =========================
      LANGUAGE SWITCHER
@@ -406,6 +453,7 @@ nav {
 
 <div class="shell">
 
+
   <!-- =========================
        NAVIGATION
   ========================= -->
@@ -425,6 +473,7 @@ nav {
 
   <main>
 
+
     <!-- =========================
          WORK
     ========================= -->
@@ -439,17 +488,20 @@ nav {
         <div class="project-video">
 
           <iframe
-            src="https://www.youtube.com/embed/_bZya92FC8I"
+            src="https://www.youtube.com/embed/_bZya92FC8I?controls=0&modestbranding=1&rel=0&iv_load_policy=3&playsinline=1&enablejsapi=1"
             title="Projekt 1"
             allow="autoplay; fullscreen; picture-in-picture"
             allowfullscreen>
           </iframe>
+
+          <div class="video-click-layer"></div>
 
         </div>
 
         <div class="project-info">
 
           <div>
+
             <h2 class="project-title">
               Julhälsning 2026
             </h2>
@@ -457,6 +509,7 @@ nav {
             <p class="project-meta">
               Sweco / Konkret AB · Roll: Ljuddesign / Mix
             </p>
+
           </div>
 
         </div>
@@ -471,17 +524,20 @@ nav {
         <div class="project-video">
 
           <iframe
-            src="https://www.youtube.com/embed/7YHTXxKZF6k?si=hufZkvHp5kNBIy"
+            src="https://www.youtube.com/embed/7YHTXxKZF6k?si=hufZkvHp5kNBIy&controls=0&modestbranding=1&rel=0&iv_load_policy=3&playsinline=1&enablejsapi=1"
             title="Projekt 2"
             allow="autoplay; fullscreen; picture-in-picture"
             allowfullscreen>
           </iframe>
+
+          <div class="video-click-layer"></div>
 
         </div>
 
         <div class="project-info">
 
           <div>
+
             <h2 class="project-title">
               Julhälsning 2025
             </h2>
@@ -489,6 +545,7 @@ nav {
             <p class="project-meta">
               Sweco / Konkret AB · Roll: Ljuddesign / Mix
             </p>
+
           </div>
 
         </div>
@@ -503,17 +560,20 @@ nav {
         <div class="project-video">
 
           <iframe
-            src="https://player.vimeo.com/video/1098969894?h=e0b7eb809e"
+            src="https://player.vimeo.com/video/1098969894?h=e0b7eb809e&controls=0&title=0&byline=0&portrait=0"
             title="Projekt 3"
             allow="autoplay; fullscreen; picture-in-picture"
             allowfullscreen>
           </iframe>
+
+          <div class="video-click-layer"></div>
 
         </div>
 
         <div class="project-info">
 
           <div>
+
             <h2 class="project-title">
               Blåkläders Triple Density Sole
             </h2>
@@ -521,6 +581,7 @@ nav {
             <p class="project-meta">
               BlåKläder / Konkret AB · Roll: Ljuddesign / Mix
             </p>
+
           </div>
 
         </div>
@@ -535,17 +596,20 @@ nav {
         <div class="project-video">
 
           <iframe
-            src="https://www.youtube.com/embed/qAWUTnCIgBg?si=YvfBONgyNaT34oTQ"
+            src="https://www.youtube.com/embed/qAWUTnCIgBg?si=YvfBONgyNaT34oTQ&controls=0&modestbranding=1&rel=0&iv_load_policy=3&playsinline=1&enablejsapi=1"
             title="Projekt 4"
             allow="autoplay; fullscreen; picture-in-picture"
             allowfullscreen>
           </iframe>
+
+          <div class="video-click-layer"></div>
 
         </div>
 
         <div class="project-info">
 
           <div>
+
             <h2 class="project-title">
               Red Bull Symphonic x Victor Leksell (BTS)
             </h2>
@@ -553,6 +617,7 @@ nav {
             <p class="project-meta">
               Red Bull / SoYou · Roll: Klippning / Ljuddesign / Mix
             </p>
+
           </div>
 
           <p class="project-description">
@@ -571,17 +636,20 @@ nav {
         <div class="project-video">
 
           <iframe
-            src="https://www.youtube.com/embed/ygVyPM1IvMU?si=2e-iCC8y15AASd0D"
+            src="https://www.youtube.com/embed/ygVyPM1IvMU?si=2e-iCC8y15AASd0D&controls=0&modestbranding=1&rel=0&iv_load_policy=3&playsinline=1&enablejsapi=1"
             title="Projekt 5"
             allow="autoplay; fullscreen; picture-in-picture"
             allowfullscreen>
           </iframe>
+
+          <div class="video-click-layer"></div>
 
         </div>
 
         <div class="project-info">
 
           <div>
+
             <h2 class="project-title">
               Stellaris Nexus Trailer
             </h2>
@@ -589,6 +657,7 @@ nav {
             <p class="project-meta">
               Paradox / Artistry film · Roll: Ljuddesign / Mix
             </p>
+
           </div>
 
         </div>
@@ -603,17 +672,20 @@ nav {
         <div class="project-video">
 
           <iframe
-            src="https://player.vimeo.com/video/807228365?h=071261df06"
+            src="https://player.vimeo.com/video/807228365?h=071261df06&controls=0&title=0&byline=0&portrait=0"
             title="Projekt 6"
             allow="autoplay; fullscreen; picture-in-picture"
             allowfullscreen>
           </iframe>
+
+          <div class="video-click-layer"></div>
 
         </div>
 
         <div class="project-info">
 
           <div>
+
             <h2 class="project-title">
               Swedish Sterling
             </h2>
@@ -621,6 +693,7 @@ nav {
             <p class="project-meta">
               Stirling Versal / Rob Whiteman · Roll: Ljuddesign / Mix
             </p>
+
           </div>
 
         </div>
@@ -635,17 +708,20 @@ nav {
         <div class="project-video">
 
           <iframe
-            src="https://player.vimeo.com/video/476216027?h=d37157fb46"
+            src="https://player.vimeo.com/video/476216027?h=d37157fb46&controls=0&title=0&byline=0&portrait=0"
             title="Projekt 7"
             allow="autoplay; fullscreen; picture-in-picture"
             allowfullscreen>
           </iframe>
+
+          <div class="video-click-layer"></div>
 
         </div>
 
         <div class="project-info">
 
           <div>
+
             <h2 class="project-title">
               12,000 KM - Trans-Siberian to Japan
             </h2>
@@ -653,6 +729,7 @@ nav {
             <p class="project-meta">
               Erik Nylander · Roll: Kompositör / Ljuddesign / Mix
             </p>
+
           </div>
 
         </div>
@@ -667,17 +744,20 @@ nav {
         <div class="project-video">
 
           <iframe
-            src="https://player.vimeo.com/video/807228185?h=ece2d146ee"
+            src="https://player.vimeo.com/video/807228185?h=ece2d146ee&controls=0&title=0&byline=0&portrait=0"
             title="Projekt 8"
             allow="autoplay; fullscreen; picture-in-picture"
             allowfullscreen>
           </iframe>
+
+          <div class="video-click-layer"></div>
 
         </div>
 
         <div class="project-info">
 
           <div>
+
             <h2 class="project-title">
               Revelop
             </h2>
@@ -685,6 +765,7 @@ nav {
             <p class="project-meta">
               Revelop / Rob Whiteman · Roll: Kompositör / Ljuddesign / Mix
             </p>
+
           </div>
 
         </div>
@@ -699,17 +780,20 @@ nav {
         <div class="project-video">
 
           <iframe
-            src="https://www.youtube.com/embed/ao1cUOzVvrQ?si=xv9Yrxn5m-FrOhvF"
+            src="https://www.youtube.com/embed/ao1cUOzVvrQ?si=xv9Yrxn5m-FrOhvF&controls=0&modestbranding=1&rel=0&iv_load_policy=3&playsinline=1&enablejsapi=1"
             title="Projekt 9"
             allow="autoplay; fullscreen; picture-in-picture"
             allowfullscreen>
           </iframe>
+
+          <div class="video-click-layer"></div>
 
         </div>
 
         <div class="project-info">
 
           <div>
+
             <h2 class="project-title">
               Lovisa Ringborg på Fotografiska
             </h2>
@@ -717,6 +801,7 @@ nav {
             <p class="project-meta">
               Fotografiska Museet / Camilo Altera · Roll: Ljuddesign / Mix
             </p>
+
           </div>
 
         </div>
@@ -732,6 +817,7 @@ nav {
     ========================= -->
 
     <section id="about">
+
 
       <div class="lede">
 
@@ -909,54 +995,227 @@ nav {
 </div>
 
 
+<!-- =========================
+     VIDEO PLAYBACK SYSTEM
+========================= -->
+
 <script>
 
-  // Highlight navigation based on scroll position
-
-  const links = document.querySelectorAll('nav a');
-
-  const sections = [...links].map(
-    link => document.querySelector(link.getAttribute('href'))
-  );
+const videoContainers = document.querySelectorAll('.project-video');
 
 
-  const setActive = () => {
+videoContainers.forEach(container => {
 
-    let current = sections[0];
+  const iframe = container.querySelector('iframe');
+  const clickLayer = container.querySelector('.video-click-layer');
 
-    sections.forEach(section => {
+  if (!iframe || !clickLayer) return;
 
-      if (
-        section &&
-        section.getBoundingClientRect().top <= 120
-      ) {
-        current = section;
+
+  /*
+    Determine whether this is YouTube or Vimeo.
+  */
+
+  const isYouTube =
+    iframe.src.includes('youtube.com') ||
+    iframe.src.includes('youtu.be');
+
+  const isVimeo =
+    iframe.src.includes('vimeo.com');
+
+
+  /*
+    Send commands to YouTube.
+  */
+
+  function youtubeCommand(command) {
+
+    iframe.contentWindow.postMessage(
+      JSON.stringify({
+        event: 'command',
+        func: command,
+        args: []
+      }),
+      '*'
+    );
+
+  }
+
+
+  /*
+    Send commands to Vimeo.
+  */
+
+  function vimeoCommand(command) {
+
+    iframe.contentWindow.postMessage(
+      JSON.stringify({
+        method: command
+      }),
+      '*'
+    );
+
+  }
+
+
+  /*
+    Track whether the video is currently playing.
+
+    We keep this locally so the click layer can
+    toggle play / pause.
+  */
+
+  let playing = false;
+
+
+  /*
+    Click anywhere on the video.
+  */
+
+  clickLayer.addEventListener('click', () => {
+
+    if (isYouTube) {
+
+      if (playing) {
+
+        youtubeCommand('pauseVideo');
+
+        playing = false;
+
+      } else {
+
+        youtubeCommand('playVideo');
+
+        playing = true;
+
       }
 
-    });
+    }
 
 
-    links.forEach(link => {
+    if (isVimeo) {
 
-      link.classList.toggle(
-        'active',
-        link.getAttribute('href') === '#' + current.id
+      if (playing) {
+
+        vimeoCommand('pause');
+
+        playing = false;
+
+      } else {
+
+        vimeoCommand('play');
+
+        playing = true;
+
+      }
+
+    }
+
+  });
+
+
+  /*
+    Prepare YouTube API communication.
+  */
+
+  if (isYouTube) {
+
+    iframe.addEventListener('load', () => {
+
+      iframe.contentWindow.postMessage(
+        JSON.stringify({
+          event: 'listening',
+          id: 1,
+          channel: 'portfolio'
+        }),
+        '*'
       );
 
     });
 
-  };
+  }
 
 
-  window.addEventListener(
-    'scroll',
-    setActive,
-    { passive: true }
-  );
+  /*
+    Prepare Vimeo API communication.
+  */
 
-  setActive();
+  if (isVimeo) {
+
+    iframe.addEventListener('load', () => {
+
+      iframe.contentWindow.postMessage(
+        JSON.stringify({
+          method: 'addEventListener',
+          value: 'play'
+        }),
+        '*'
+      );
+
+      iframe.contentWindow.postMessage(
+        JSON.stringify({
+          method: 'addEventListener',
+          value: 'pause'
+        }),
+        '*'
+      );
+
+    });
+
+  }
+
+});
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+const links = document.querySelectorAll('nav a');
+
+const sections = [...links].map(
+  link => document.querySelector(link.getAttribute('href'))
+);
+
+
+const setActive = () => {
+
+  let current = sections[0];
+
+  sections.forEach(section => {
+
+    if (
+      section &&
+      section.getBoundingClientRect().top <= 120
+    ) {
+      current = section;
+    }
+
+  });
+
+
+  links.forEach(link => {
+
+    link.classList.toggle(
+      'active',
+      link.getAttribute('href') === '#' + current.id
+    );
+
+  });
+
+};
+
+
+window.addEventListener(
+  'scroll',
+  setActive,
+  { passive: true }
+);
+
+setActive();
 
 </script>
+
 
 </body>
 </html>
