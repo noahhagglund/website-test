@@ -108,7 +108,8 @@ a {
   top: 64px;
   right: 48px;
   z-index: 1000;
-  font-size: 1rem;
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
 }
 
 .language-switcher a {
@@ -116,8 +117,14 @@ a {
   transition: color 0.2s ease;
 }
 
-.language-switcher a:hover {
+.language-switcher a:hover,
+.language-switcher a.active {
   color: var(--accent);
+}
+
+.language-divider {
+  color: var(--line);
+  margin: 0 7px;
 }
 
 /* =========================
