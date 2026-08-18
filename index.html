@@ -175,7 +175,7 @@ main {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   column-gap: 32px;
-  row-gap: 80px;
+  row-gap: 40px;
   margin-bottom: 160px;
 }
 
@@ -406,7 +406,7 @@ nav {
 
 #work {
   grid-template-columns: 1fr;
-  row-gap: 72px;
+  row-gap: 40px;
 }
 
 .project {
@@ -434,10 +434,6 @@ nav {
 
 <body>
 
-<!-- =========================
-     LANGUAGE SWITCHER
-========================= -->
-
 <div class="language-switcher">
 
   <a href="index.html" class="active">
@@ -455,10 +451,6 @@ nav {
 
 <div class="shell">
 
-  <!-- =========================
-       NAVIGATION
-  ========================= -->
-
   <nav>
 
     <a href="#work" class="active">
@@ -474,12 +466,7 @@ nav {
 
   <main>
 
-    <!-- =========================
-         WORK
-    ========================= -->
-
     <section id="work">
-
 
       <!-- PROJECT 1 -->
 
@@ -697,7 +684,7 @@ nav {
           <div>
             <h2 class="project-title">
               12,000 KM - Trans-Siberian to Japan
-            </2>
+            </h2>
 
             <p class="project-meta">
               Erik Nylander · Role: Composer / Sound Design / Mix
@@ -772,13 +759,10 @@ nav {
 
       </article>
 
-
     </section>
 
 
-    <!-- =========================
-         ABOUT
-    ========================= -->
+    <!-- ABOUT -->
 
     <section id="about">
 
@@ -811,9 +795,7 @@ nav {
       <hr class="rule">
 
 
-      <!-- =========================
-           SERVICES
-      ========================= -->
+      <!-- SERVICES -->
 
       <div class="services">
 
@@ -828,7 +810,6 @@ nav {
 
 
         <div class="service-cols">
-
 
           <div>
 
@@ -881,7 +862,6 @@ nav {
 
           </div>
 
-
         </div>
 
       </div>
@@ -890,9 +870,7 @@ nav {
       <hr class="rule">
 
 
-      <!-- =========================
-           CLOSING
-      ========================= -->
+      <!-- CLOSING -->
 
       <div class="closing">
 
@@ -908,11 +886,9 @@ nav {
           my primary goal is to evoke emotions and produce unique, captivating music that engages the listener.
         </p>
 
-
         <p class="say-hello">
           Say hello:
         </p>
-
 
         <div class="contact-details">
 
@@ -940,7 +916,6 @@ nav {
 
       </div>
 
-
     </section>
 
 
@@ -952,7 +927,6 @@ nav {
 
     </footer>
 
-
   </main>
 
 </div>
@@ -960,50 +934,45 @@ nav {
 
 <script>
 
-  // Highlight navigation based on scroll position
+const links = document.querySelectorAll('nav a');
 
-  const links = document.querySelectorAll('nav a');
+const sections = [...links].map(
+  link => document.querySelector(link.getAttribute('href'))
+);
 
-  const sections = [...links].map(
-    link => document.querySelector(link.getAttribute('href'))
-  );
+const setActive = () => {
 
+  let current = sections[0];
 
-  const setActive = () => {
+  sections.forEach(section => {
 
-    let current = sections[0];
+    if (
+      section &&
+      section.getBoundingClientRect().top <= 120
+    ) {
+      current = section;
+    }
 
-    sections.forEach(section => {
+  });
 
-      if (
-        section &&
-        section.getBoundingClientRect().top <= 120
-      ) {
-        current = section;
-      }
+  links.forEach(link => {
 
-    });
+    link.classList.toggle(
+      'active',
+      link.getAttribute('href') === '#' + current.id
+    );
 
+  });
 
-    links.forEach(link => {
+};
 
-      link.classList.toggle(
-        'active',
-        link.getAttribute('href') === '#' + current.id
-      );
+window.addEventListener(
+  'scroll',
+  setActive,
+  { passive: true }
+);
 
-    });
-
-  };
-
-
-  window.addEventListener(
-    'scroll',
-    setActive,
-    { passive: true }
-  );
-
-  setActive();
+setActive();
 
 </script>
 
