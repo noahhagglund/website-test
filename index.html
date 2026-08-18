@@ -172,11 +172,15 @@ main {
 ========================= */
 
 #work {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 32px;
+  row-gap: 80px;
   margin-bottom: 160px;
 }
 
 .project {
-  margin-bottom: 96px;
+  margin-bottom: 0;
 }
 
 .project-video {
@@ -195,26 +199,25 @@ main {
 }
 
 .project-info {
-  display: grid;
-  grid-template-columns: 1fr 260px;
-  gap: 32px;
-  padding-top: 18px;
+  display: block;
+  padding-top: 14px;
 }
 
 .project-title {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 500;
   margin-bottom: 4px;
 }
 
 .project-meta {
   color: var(--muted);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
 }
 
 .project-description {
+  margin-top: 8px;
   color: var(--muted);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
 }
 
 /* =========================
@@ -230,17 +233,6 @@ main {
 .lede {
   max-width: 640px;
   margin: 0 auto;
-}
-
-  .accent-title {
-  color: var(--accent);
-}
-
-.lede h1 {
-  font-family: 'Lora', serif;
-  font-weight: 400;
-  font-size: 2rem;
-  margin-bottom: 24px;
 }
 
 .lede p {
@@ -412,13 +404,18 @@ nav {
   right: 48px;
 }
 
+#work {
+  grid-template-columns: 1fr;
+  row-gap: 72px;
+}
+
 .project {
-  margin-bottom: 72px;
+  margin-bottom: 0;
 }
 
 .project-info {
-  grid-template-columns: 1fr;
-  gap: 8px;
+  display: block;
+  padding-top: 14px;
 }
 
 .service-cols {
@@ -700,7 +697,7 @@ nav {
           <div>
             <h2 class="project-title">
               12,000 KM - Trans-Siberian to Japan
-            </h2>
+            </2>
 
             <p class="project-meta">
               Erik Nylander · Role: Composer / Sound Design / Mix
@@ -787,8 +784,6 @@ nav {
 
       <div class="lede">
 
-        <h1 class="accent-title">Sound Designer in Stockholm</h1>
-
         <p>
           Hello! My name is Noah Hägglund.
         </p>
@@ -837,7 +832,9 @@ nav {
 
           <div>
 
-            <div class="orb sound">   <img src="images/bubble1.png" alt="Sound Design"> </div>
+            <div class="orb sound">
+              <img src="images/bubble1.png" alt="Sound Design">
+            </div>
 
             <h3>
               Sound Design
@@ -853,7 +850,9 @@ nav {
 
           <div>
 
-            <div class="orb mix">   <img src="images/bubble2.png" alt="Mixing & Mastering"> </div>
+            <div class="orb mix">
+              <img src="images/bubble2.png" alt="Mixing & Mastering">
+            </div>
 
             <h3>
               Mixing &amp; Mastering
@@ -868,7 +867,9 @@ nav {
 
           <div>
 
-            <div class="orb restore">   <img src="images/bubble3.jpg" alt="Audio Restoration"> </div>
+            <div class="orb restore">
+              <img src="images/bubble3.jpg" alt="Audio Restoration">
+            </div>
 
             <h3>
               Audio Restoration
@@ -908,7 +909,7 @@ nav {
         </p>
 
 
-               <p class="say-hello">
+        <p class="say-hello">
           Say hello:
         </p>
 
