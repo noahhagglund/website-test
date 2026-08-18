@@ -1,4 +1,3 @@
-html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -70,6 +69,7 @@ nav {
   top: 64px;
   align-self: start;
   font-size: 1.4rem;
+  transform: translateX( 60px);
 }
 
 nav a {
@@ -85,7 +85,9 @@ nav a.active {
 }
 
 main {
+  width: 100%;
   min-width: 0;
+  transform: translateX(-142px);
 }
 
 /* =========================
@@ -143,24 +145,14 @@ main {
 ========================= */
 
 #about {
+  width: 100%;
   max-width: 900px;
   margin: 0 auto;
-  text-align: center;
 }
 
 .lede {
   max-width: 640px;
   margin: 0 auto;
-}
-
-.closing p {
-  max-width: 640px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.contact-details {
-  text-align: center;
 }
 
 .lede p {
@@ -258,7 +250,7 @@ main {
   color: var(--text);
   font-size: 1rem;
   max-width: 640px;
-  margin-bottom: 32px;
+  margin: 0 auto 32px;
 }
 
 .say-hello {
@@ -304,15 +296,20 @@ footer p {
 
 @media (max-width: 800px) {
 
-  .shell {
-    grid-template-columns: 1fr;
-    padding: 32px 24px;
-    gap: 48px;
-  }
+.shell {
+  position: relative;
+  min-height: 100vh;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 64px 48px;
+}
 
-  nav {
-    position: static;
-  }
+nav {
+  position: fixed;
+  top: 64px;
+  left: 48px;
+  font-size: 1.4rem;
+}
 
   .project {
     margin-bottom: 72px;
@@ -597,13 +594,9 @@ footer p {
             </h2>
 
             <p class="project-meta">
-              Erik Nylander · Role: Sound Design / Mix / 1 song credit
+              Erik Nylander · Role: Composer / Sound Design / Mix
             </p>
           </div>
-
-          <p class="project-description">
-            The prevailing climate threat has made a bunch of Swedish extreme skiers and snowboarders travel with trains and boats from Stockholm through Russia all the way to Japan, in search of deep powder and the adventure of a lifetime.
-          </p>
 
         </div>
 
@@ -617,7 +610,7 @@ footer p {
         <div class="project-video">
 
           <iframe
-            src="https://player.vimeo.com/video/476216027?h=d37157fb46"
+            src="https://player.vimeo.com/video/807228185?h=ece2d146ee"
             title="Project 8"
             allow="autoplay; fullscreen; picture-in-picture"
             allowfullscreen>
@@ -649,7 +642,7 @@ footer p {
         <div class="project-video">
 
           <iframe
-            src="https://player.vimeo.com/video/476216027?h=d37157fb46"
+            src="https://www.youtube.com/embed/ao1cUOzVvrQ?si=xv9Yrxn5m-FrOhvF"
             title="Project 8"
             allow="autoplay; fullscreen; picture-in-picture"
             allowfullscreen>
@@ -686,7 +679,7 @@ footer p {
       <div class="lede">
 
         <p>
-          hello! my name is noah hägglund.
+          Hello! My name is Noah Hägglund.
         </p>
 
         <p>
@@ -694,15 +687,15 @@ footer p {
         </p>
 
         <p>
-          over the past several years, i have honed my craft by working on commercial film and television projects, specializing in audio production for short format promotional films.
+          Over the past several years, I have honed my craft by working on commercial film and television projects, specializing in audio production for short format promotional films.
         </p>
 
         <p>
-          however, I have also successfully applied my skills to longer formats, such as dramas &amp; documentaries.
+          However, I have also successfully applied my skills to longer formats, such as dramas &amp; documentaries.
         </p>
 
         <p>
-          my expertise lies in capturing &amp; crafting high-quality audio that enhances the overall production value of these projects.
+          My expertise lies in capturing &amp; crafting high-quality audio that enhances the overall production value of these projects.
         </p>
 
       </div>
@@ -718,12 +711,12 @@ footer p {
       <div class="services">
 
         <h2>
-          services
+          Services
         </h2>
 
         <p>
           I specialize in creating high-quality audio for various media projects.
-          i offer a range of services that include
+          I can help with a range of services that include:
         </p>
 
 
@@ -735,12 +728,12 @@ footer p {
             <div class="orb sound"></div>
 
             <h3>
-              sound design
+              Sound Design
             </h3>
 
             <p>
-              design and create custom sound effects tailored to your project's specific needs.
-              from detailed environments and movement to dramatic effects and atmospheric soundscapes.
+              Design and create custom sound effects tailored to your project's specific needs.
+              From detailed environments and movement to dramatic effects and atmospheric soundscapes.
             </p>
 
           </div>
@@ -751,11 +744,11 @@ footer p {
             <div class="orb mix"></div>
 
             <h3>
-              mixing &amp; mastering
+              Mixing &amp; Mastering
             </h3>
 
             <p>
-              mix and master your project's audio so dialogue, music and sound effects work together clearly and effectively.
+              Mix and master your project's audio so dialogue, music and sound effects work together clearly and effectively.
             </p>
 
           </div>
@@ -766,11 +759,11 @@ footer p {
             <div class="orb restore"></div>
 
             <h3>
-              audio restoration
+              Audio Restoration
             </h3>
 
             <p>
-              clean and restore existing recordings by removing unwanted noise, hiss, hum and other distractions while preserving the character of the original recording.
+              Clean up and restore existing recordings by removing unwanted noise, hiss, hum and other distractions while preserving the character of the original recording.
             </p>
 
           </div>
@@ -792,13 +785,13 @@ footer p {
 
         <p>
           I'm constantly striving to further develop my workflow &amp; my own sound.
-          this, of course, without ever sacrificing the quality of my craft.
+          This, of course, without ever sacrificing the quality of my craft.
           I'm always keen on going the extra mile for that premium end product.
         </p>
 
         <p>
-          as a side fling, i indulge in crafting unique sounds using Ableton.
-          whether it's gritty electronic dance music, experimental beats or rich soundscapes,
+          As a side fling, i indulge in crafting unique sounds using Ableton.
+          Whether it's gritty electronic dance music, experimental beats or rich soundscapes,
           my primary goal is to evoke emotions and produce unique, captivating music that engages the listener.
         </p>
 
